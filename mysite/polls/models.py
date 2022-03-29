@@ -1,4 +1,4 @@
-import datetime
+from _datetime import datetime
 
 from django.db import models
 from django.utils import timezone
@@ -12,7 +12,8 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
 
     def __str__(self):
-        return self.question_text
+        format=" calendario= %d-%m-%y, con hora:%H:%M"
+        return self.question_text+datetime.now().strftime(format)
 
     def was_published_recently(self):
         return self.pub_date >= (timezone.now() - datetime.timedelta(days=1))
