@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('polls.url'))#si el 1er parametro esta en blanco, es q es el mismo
+    path('polls/', include('polls.url'))#si el 1er parametro esta en blanco, es q es el mismo
     # directorio en el q estoy parado o sea mysite/
     #pero si pongo polls/, esperara a q entre a esa direccion para incluir el include()
 ]
