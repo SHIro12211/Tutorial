@@ -1,0 +1,15 @@
+
+#si existe o si es diferente d null
+{% if latest_question_list  %}
+    <ul>
+    {% for question in  latest_question_list  %}
+        <li><a  href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    
+    {% endfor %}
+    
+    </ul>
+{% else %}#este else se correra en caso de q el for no pueda recorrer la lista latest_question_list
+    <p>No polls are available</p>
+
+{% endif %}
+
