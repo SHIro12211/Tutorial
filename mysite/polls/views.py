@@ -9,10 +9,11 @@ def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]  # esto es una lista de los ultimos 5 elementos de la lista([:5)
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
+
 def texto(request):
     contenido="Hola Mundo"
     cont={'Text':contenido}
-    return render(request,'polls/texto.html')
+    return render(request,'polls/texto.html', cont)
 
 def detail(request, question_id):
     return HttpResponse("You're looking at question %s." % question_id)
