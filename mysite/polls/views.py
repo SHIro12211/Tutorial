@@ -7,8 +7,8 @@ from django.urls import reverse
 
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[
-                           :5]  # esto es una lista de los ultimos 5 elementos de la lista([:5)
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    # esto es una lista de los ultimos 5 elementos de la lista([:5)
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
 
@@ -24,8 +24,8 @@ def detail(request, question_id):
 
 
 def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question': question})
 
 
 def vote(request, question_id):#para asignar votos a las respuestas de la pregunta question_id
