@@ -1,4 +1,4 @@
-from _datetime import datetime
+import datetime
 
 from django.db import models
 from django.utils import timezone
@@ -15,8 +15,15 @@ class Question(models.Model):
         format=" calendario= %d-%m-%y, con hora:%H:%M"
         return self.question_text+datetime.now().strftime(format)
 
-    def was_published_recently(self):
-        return self.pub_date >= (timezone.now() - datetime.timedelta(days=1))
+    def was_published_recently(self):#devuleve TRUE si y solo si la fecha de publicacion es mayor de 24h,
+        # o sea que se hizo la publicacion hace mas de 24h
+        #Ej: Tiene que haberse punlicado el miercoles si hoy es vieres para que sea FALSE
+        # return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        #esta es la otra opcion, que si el user pone la hora de la publicacion futura, entonces la publicacion no sera
+        #reciente hasta que pase las 34h
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now#de esta forma el return no podra devolcer TRUE x
+        # ayuda de la comparacion now()
 
 
 class Choice(models.Model):
