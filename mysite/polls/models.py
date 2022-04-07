@@ -13,7 +13,7 @@ class Question(models.Model):
 
     def __str__(self):
         format=" calendario= %d-%m-%y, con hora:%H:%M"
-        return self.question_text+datetime.now().strftime(format)
+        return self.question_text+datetime.datetime.now().strftime(format)
 
     def was_published_recently(self):#devuleve TRUE si y solo si la fecha de publicacion es mayor de 24h,
         # o sea que se hizo la publicacion hace mas de 24h
