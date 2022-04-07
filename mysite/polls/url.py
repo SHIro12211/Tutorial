@@ -1,7 +1,14 @@
 from django.urls import path
-from . import views
 
+from . import views
+app_name="polls"
 urlpatterns = [
-    path('', views.index, name="index"),#cuando al directorio de polls(eso es lo q significa ''), ve a views.py
-    # y ejecuta la funcion index
+    # ex: /polls/
+    path('', views.IndexView.as_view(), name='index'),
+    # ex: /polls/5/
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    # ex: /polls/5/results/
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    # ex: /polls/5/vote/
+    path('<int:question_id>/vote/', views.vote, name='vote'),#1er parametro es de tipo datos int el id de la pregunta
 ]
