@@ -1,7 +1,7 @@
 # Create your views here.
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from .models import Question,Choice
+from .models import Question, Choice
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone

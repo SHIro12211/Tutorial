@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
 
 
 # Create your models here.
@@ -10,9 +11,14 @@ from django.utils import timezone
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    @admin.display(
+        boolean=True,
+        ordering='pub_date',
+        description='Published recently?'
+    )
 
     def __str__(self):
-        format=" calendario= %d-%m-%y, con hora:%H:%M"
+        format= "calendario= %d-%m-%y, con hora:%H:%M"
         return self.question_text+datetime.datetime.now().strftime(format)
 
     def was_published_recently(self):#devuleve TRUE si y solo si la fecha de publicacion es mayor de 24h,

@@ -16,10 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('polls/', include('polls.url'))#si el 1er parametro esta en blanco, es q es el mismo
+    path('', include('polls.url'),name='app_polls'),#si el 1er parametro esta en blanco, es q es el mismo
     # directorio en el q estoy parado o sea mysite/
     #pero si pongo polls/, esperara a q entre a esa direccion para incluir el include()
+    path('admin/', admin.site.urls)
 ]
